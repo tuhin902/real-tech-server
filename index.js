@@ -17,6 +17,7 @@ async function run() {
     try {
         const productCollection = client.db('techDB').collection('product');
         const reviewCollection = client.db('techDB').collection('review');
+        const branchCollection = client.db('techDB').collection('branch');
 
 
         app.get('/product', async (req, res) => {
@@ -33,10 +34,16 @@ async function run() {
             res.send(product);
         })
 
+        app.post('/product', async (req, res) => {
+            const addProduct = req.body;
+            const response = await productCollection.insertOne(addProduct);
+            res.send(response);
+        })
+
         //branch
         app.get('/branch', async (req, res) => {
             const query = {};
-            const cursor = productCollection.find(query);
+            const cursor = branchCollection.find(query);
             const branch = await cursor.toArray();
             res.send(branch);
         })
