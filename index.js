@@ -33,6 +33,13 @@ async function run() {
             res.send(product);
         })
 
+        //branch
+        app.get('/branch', async (req, res) => {
+            const query = {};
+            const cursor = productCollection.find(query);
+            const branch = await cursor.toArray();
+            res.send(branch);
+        })
 
         //review
 
