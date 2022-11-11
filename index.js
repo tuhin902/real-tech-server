@@ -19,7 +19,7 @@ async function run() {
         const reviewCollection = client.db('techDB').collection('review');
         const branchCollection = client.db('techDB').collection('branch');
 
-
+        //product api
         app.get('/product', async (req, res) => {
             const query = {};
             const cursor = productCollection.find(query);
@@ -34,6 +34,7 @@ async function run() {
             res.send(product);
         })
 
+        //new product added api
         app.post('/product', async (req, res) => {
             const addProduct = req.body;
             const response = await productCollection.insertOne(addProduct);
@@ -48,7 +49,7 @@ async function run() {
             res.send(branch);
         })
 
-        //review
+        //review api
 
         app.get('/review', async (req, res) => {
             const query = {};
@@ -56,6 +57,8 @@ async function run() {
             const review = await cursor.toArray();
             res.send(review);
         })
+
+        //new review added api
 
         app.post('/review', async (req, res) => {
             const review = req.body;
