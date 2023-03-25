@@ -39,7 +39,7 @@ async function run() {
             const addProduct = req.body;
             const response = await productCollection.insertOne(addProduct);
             res.send(response);
-        })
+        });
 
         //branch
         app.get('/branch', async (req, res) => {
@@ -47,7 +47,7 @@ async function run() {
             const cursor = branchCollection.find(query);
             const branch = await cursor.toArray();
             res.send(branch);
-        })
+        });
 
         //review api
 
@@ -56,7 +56,7 @@ async function run() {
             const cursor = reviewCollection.find(query);
             const review = await cursor.toArray();
             res.send(review);
-        })
+        });
 
         //new review added api
 
@@ -64,7 +64,7 @@ async function run() {
             const review = req.body;
             const result = await reviewCollection.insertOne(review);
             res.send(result);
-        })
+        });
     }
     finally {
 
